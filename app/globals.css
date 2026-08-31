@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; }
+
+@media print {
+  body { background: white !important; }
+  button, textarea, header, .print\:hidden { display: none !important; }
+  section { break-inside: avoid; box-shadow: none !important; }
+}
