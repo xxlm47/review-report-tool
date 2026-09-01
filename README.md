@@ -1,57 +1,58 @@
-# AI Reputation Manager
+# Instant Quote Auditor
 
-A stateless Next.js MVP that turns up to 10 customer reviews into an actionable local-business reputation report using Groq.
+A tiny, stateless web app for fence contractors that checks pasted estimates for common estimating risks before a customer quote is sent.
 
-## Features
+## MVP
 
-- Positive and negative review themes
-- Operational recommendations
-- Draft response for every review
-- Social-media post ideas
-- FAQ suggestions
-- Polished testimonial copy
-- "What customers love" summary
-- Copy buttons
-- Print / Save as PDF
-- No database
+Paste an estimate such as:
+
+```text
+240 LF 6' privacy fence
+31 posts
+2 gates
+Labor $2,400
+Materials $4,100
+Total $6,500
+```
+
+The app extracts the basic takeoff and checks:
+
+- Approximate post spacing
+- Gate hardware omissions
+- Material allowance risk
+- Missing concrete allowance
+- Missing labor/material/price fields
+- Gross margin
+- Suggested price range based on a target gross-margin band
+
+It can also generate a simple customer-facing quote and use the browser print dialog to save the report as PDF.
+
+## Important
+
+This MVP uses transparent deterministic rules rather than an AI API. That makes the first validation version free to run and easy to audit. It is a planning aid, not a substitute for a contractor's actual takeoff, supplier pricing, site inspection, engineering, or local requirements.
 
 ## Stack
 
 - Next.js App Router
 - React + TypeScript
 - Tailwind CSS
-- OpenAI SDK pointed at Groq's OpenAI-compatible API
-- Vercel-ready
+- No database
+- No authentication
+- No paid API required
 
 ## Local setup
 
 ```bash
 npm install
-cp .env.local.example .env.local
-```
-
-Put your Groq API key in `.env.local`:
-
-```env
-GROQ_API_KEY=your_groq_api_key_here
-```
-
-Then run:
-
-```bash
 npm run dev
 ```
 
 Open `http://localhost:3000`.
 
-## Vercel deployment
+## Product roadmap
 
-Import this repository into Vercel and add `GROQ_API_KEY` under the project's Environment Variables. Do not commit `.env.local` or a real API key.
-
-## Usage
-
-Paste one customer review per line, up to 10 reviews total, then generate the report. The API key remains server-side and is never exposed to the browser.
-
-## Notes
-
-The MVP deliberately uses manual review input so the idea can be validated without Google Business Profile integrations, scraping, authentication, or a database. Future versions can add business workspaces, review imports, saved reports, branded PDF exports, and billing.
+1. Validate with fence contractors.
+2. Add editable contractor assumptions (post spacing, concrete, waste, target margin).
+3. Add saved estimate history.
+4. Add account/billing only after users repeatedly request it.
+5. Add specialized audit modes for roofing, concrete, landscaping, and painting.
