@@ -5,9 +5,11 @@
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 body { margin: 0; }
+button, textarea { font: inherit; }
 
 @media print {
-  body { background: white !important; }
-  button, textarea, header, .print\:hidden { display: none !important; }
+  body { background: white !important; color: black !important; }
+  textarea, header, footer, button, .print\:hidden { display: none !important; }
+  main { background: white !important; color: black !important; padding: 0 !important; }
   section { break-inside: avoid; box-shadow: none !important; }
 }
